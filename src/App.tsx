@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ChartComponent from './Chart';
 
-function App() {
+const App: React.FC = () => {
+  const [timeframe, setTimeframe] = useState('daily');
+
+  const handleTimeframeChange = (frame: string) => {
+    setTimeframe(frame);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <button onClick={() => handleTimeframeChange('daily')}>Daily</button>
+        <button onClick={() => handleTimeframeChange('weekly')}>Weekly</button>
+        <button onClick={() => handleTimeframeChange('monthly')}>Monthly</button>
+      </div>
+      <ChartComponent timeframe={timeframe} />
     </div>
   );
-}
+};
 
 export default App;
